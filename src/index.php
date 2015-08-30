@@ -7,4 +7,6 @@ include("page.php");
 $page = new Page(htmlentities(isset($_GET['page']) ? $_GET['page'] : '', ENT_QUOTES, 'UTF-8'));
 $page->parseContent();
 
+echo "test";
+
 ?>
