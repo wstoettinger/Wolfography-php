@@ -1,0 +1,436 @@
+$col-darker: #222;
+$col-dark: #333;
+$col-dark-2:#444;
+$col-light: #F5F5F5;
+$col-lighter: #fff;
+$col-emp-dark: #074e68;
+$col-emp-light: #0078a0;
+$col-emp-lighter: #008cba;
+// responsive box system  
+$space: 10px;
+$outer-spacing: 20px;
+$space-h: 15px;
+$space-v: 15px;
+$max-width: 1200px;
+$cont-max-width: 1200px - 4 * $space;
+$col-width: 100% / 12;
+// media breakpoints
+$break-phone: 34em;
+// 480px;
+$break-menu: 920px;
+$break-tablet: 62em;
+//1280px;
+$top-bar-height: 80px;
+$top-bar-height-sm: 60px;
+$top-bar-image-sm: 45px;
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+body,
+html,
+header,
+main,
+footer {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Open Sans;
+  //font-size: 12px;
+  font-weight: 300;
+  color: $col-dark;
+  background-color: $col-light;
+}
+
+header .bottom {
+  height: 70px;
+  background-color: $col-emp-dark;
+  color: $col-light;
+}
+
+footer .top {
+  height: 40px;
+  background-color: $col-emp-dark;
+  color: $col-light;
+}
+
+footer .bottom {
+  height: 60px;
+  background-color: $col-dark;
+  color: $col-light;
+}
+
+// box has a white background and a box-shadow
+.box {
+  padding: $space $space * 2;
+  background-color: #fff;
+  color: $col-dark;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px 0px;
+}
+
+.left {
+  float: left !important;
+}
+
+.center {
+  text-align: center;
+  float: none !important;
+}
+
+.right {
+  float: right !important;
+}
+
+.container,
+.container div,
+.mynav {
+  &:before {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+  }
+
+}
+
+////////////
+// NAV
+///////////
+
+.nav-bar {
+  display: block;
+  background-color: $col-dark;
+  color: $col-light;
+}
+
+.mynav {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0;
+
+  div,
+  .logo,
+  .menu,
+  > div > ul,
+  > div > ul > li,
+  > div > ul > li > a {
+    line-height: $top-bar-height;
+
+    @media screen and (max-width:$break-phone) {
+      line-height: $top-bar-height-sm;
+    }
+
+  }
+
+  .logo {
+    background-color: $col-dark;
+
+    @media screen and (max-width:$break-phone) {
+      width: 100%;
+    }
+
+    // center logo before the menu breaks
+    @media screen and (min-width:$break-phone+1) and (max-width:$break-menu) {
+      text-align: center;
+      float: none !important;
+    }
+
+  }
+
+  .menu-toggle {
+    // only show menu toggle button on smartphones
+    display: none;
+
+    @media screen and (max-width:$break-phone) {
+      display: initial;
+    }
+
+    a {
+      padding: 0 30px 0 12px;
+      position: relative;
+    }
+
+    a:after {
+      content: "";
+      display: block;
+      height: 0;
+      position: absolute;
+      margin-top: -8px;
+      top: 50%;
+      box-shadow: 0 0 0 1px #FFFFFF, 0 7px 0 1px #FFFFFF, 0 14px 0 1px #FFFFFF;
+      width: 16px;
+    }
+
+  }
+
+  .menu {
+    // initially hide menu on smartphones
+    @media screen and (max-width:$break-phone) {
+      width: 100%;
+      display: none;
+    }
+
+    // center menu before it breaks
+    @media screen and (min-width:$break-phone+1) and (max-width:$break-menu) {
+      text-align: center;
+      float: none !important;
+    }
+
+    // only show when expanded
+    &.expanded,
+    ul.expanded {
+      display: block;
+    }
+
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+
+    &.dropdown {
+      min-width: 100%;
+      display: none;
+
+      // dropdown overlay only on non-smartphones
+      @media screen and (min-width:$break-phone+1) {
+        position: absolute !important;
+        z-index: 99;
+        height: 0px;
+        top: $top-bar-height;
+        left: auto;
+        right: 0;
+      }
+
+      @media screen and (max-width:$break-phone) {
+        border-bottom: 2px solid $col-dark-2;
+      }
+
+    }
+
+    // this link is only displayed on devices where client_touch.css is loaded
+    .parent-link {
+      display: none;
+    }
+
+  }
+
+  li {
+    background-color: $col-dark;
+    float: left;
+
+    a {
+      width: 100%;
+      float: left;
+      color: $col-lighter;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+  }
+
+  ul,
+  li {
+    @media screen and (max-width:$break-phone) {
+      width: 100%;
+    }
+
+  }
+
+  li.active {
+    background-color: #008cba;
+  }
+
+  li:not(.active):hover {
+    background-color: #272727;
+  }
+
+  li.has-dropdown {
+    position: relative;
+
+    > a {
+      padding-right: 35px !important;
+
+      // the dropdown toggle is only shown on devices where client_touch.css is loaded
+      &.dropdown-toggle {
+        display: none;
+      }
+
+      // code for dropdown arrow
+      &:after {
+        position: absolute;
+        right: 0;
+        margin-right: 15px;
+        border: inset 5px;
+        content: "";
+        display: block;
+        border-top-style: solid;
+
+        @media screen and (min-width:$break-phone+1) {
+          border-color: rgba(255, 255, 255, 0.5) transparent transparent transparent;
+          top: 50%;
+          margin-top: -2.5px;
+        }
+
+        @media screen and (max-width:$break-phone) {
+          border-color: transparent transparent transparent rgba(255, 255, 255, 0.5);
+          margin-top: -25px;
+        }
+
+      }
+
+      // switch arrow direction on expanded menus on mobile
+      &.expanded:after {
+        @media screen and (max-width:$break-phone) {
+          border-color: rgba(255, 255, 255, 0.5) transparent transparent transparent;
+        }
+
+      }
+
+    }
+
+    // list elements within a dropdown
+    li {
+      width: 100%;
+      line-height: 45px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+    }
+
+    // show menu item hierarchy on mobiles by indentation
+    @media screen and (max-width:$break-phone) {
+      li a {
+        padding-left: 30px;
+      }
+
+      li li a {
+        padding-left: 45px;
+      }
+
+    }
+
+  }
+
+  // third level menu (dropdown) has children on the right
+  li li.has-dropdown {
+    > a:after {
+      // arrow to the right
+      border-color: transparent transparent transparent rgba(255, 255, 255, 0.5);
+    }
+
+    ul.dropdown {
+      top: 0px;
+      left: 100%;
+    }
+
+  }
+
+  // top level divider has right border
+  li.divider {
+    border-right: 1px solid $col-dark-2;
+
+    @media screen and (max-width:$break-phone) {
+      border-bottom: 1px solid $col-dark-2;
+    }
+
+  }
+
+  // sub level divider has bottom border
+  li li.divider {
+    border-right: 0;
+    border-bottom: 1px solid $col-dark-2;
+  }
+
+  li.divider:first-child,
+  li.divider:last-child {
+    display: none;
+  }
+
+  img {
+    max-height: $top-bar-height;
+    width: auto;
+
+    // adjust logo size for mobile devices
+    @media screen and (max-width:$break-phone) {
+      max-height: $top-bar-image-sm;
+      margin-left: 5px;
+    }
+
+  }
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $col-dark-2;
+  font-weight: 400;
+  //font-family: Helvetica Neue;
+  text-transform: none;
+}
+
+h1 {
+  margin: 10px 0 0 0;
+  //font-size: 44px;
+  //line-height: 62px;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin: 10px 0 0 0;
+  //font-size: 37px;
+  //line-height: 52px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+p {
+  color: #222222;
+  font-size: 16px;
+  line-height: 25.6px;
+  text-transform: none;
+}
+
+a {
+  font-weight: 400;
+  color: $col-emp-lighter;
+  text-transform: none;
+  text-decoration: none;
+
+  :hover,
+  :focus {
+    color: $col-emp-light;
+  }
+
+}
+
+/* @media only screen and (max-device-width:480px) {
+}
+
+*/

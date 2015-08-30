@@ -1,0 +1,21 @@
+application: Wolfography-php
+version: 1
+runtime: php55
+api_version: 1
+
+handlers:
+- url: /
+  script: home.php
+
+- url: /index\.html
+  script: home.php
+  
+# Serve images as static resources.
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+  application_readable: true
+
+# Serve php scripts.
+- url: /(.+\.php)$
+  script: \1

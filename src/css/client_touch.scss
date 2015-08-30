@@ -1,0 +1,20 @@
+.mynav {
+  ul {
+    // hide parent link on non-mobile devices
+    .parent-link {
+      display: initial;
+    }
+
+  }
+
+  //show toggle link on mobile
+  li.has-dropdown > a.dropdown-toggle {
+    display: initial;
+  }
+
+  //hide normal link on mobile
+  li.has-dropdown > a:not(.dropdown-toggle) {
+    display: none;
+  }
+
+}

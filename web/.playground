@@ -1,0 +1,8 @@
+{
+  "project_name": "Wolfography PHP",
+  "project_description": "Wolfography Homepage Project",
+  "show_files": [
+    "index.php",
+    "app.yaml"
+  ]
+}

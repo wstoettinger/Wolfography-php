@@ -1,0 +1,7 @@
+.mynav {
+  // show dropdown on hover
+  li:hover > ul {
+    display: block;
+  }
+
+}
