@@ -10,10 +10,11 @@ window.initialize = function () {
       arrows: false,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 3000,
       speed: 1000,
       fade: true,
       cssEase: 'linear',
+      lazyLoad: 'progressive',
       //focusOnSelect: true (for clicks)
       //lazyLoad  'ondemand' or 'progressive'
       //mobileFirst: true
@@ -28,9 +29,9 @@ window.loadScript = function () {
   var sheet = document.createElement('link');
   sheet.rel = 'stylesheet';
   if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i))
-    sheet.href = '/static/css/client_touch.css';
+    sheet.href = '/css/client_touch.css';
   else
-    sheet.href = '/static/css/client_pointer.css';
+    sheet.href = '/css/client_pointer.css';
   document.body.appendChild(sheet);
 };
 

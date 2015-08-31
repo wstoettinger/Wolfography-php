@@ -1,5 +1,20 @@
-RewriteEngine on
-
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+ 
+RewriteCond %{HTTP_HOST} ^www\.wolfography\.at
+RewriteCond %{REQUEST_URI} !^/apps
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]
+
+#RewriteCond %{REQUEST_FILENAME}/index.html !-f
+#RewriteCond %{REQUEST_FILENAME}/index.php !-f
+#RewriteRule . index.php [L]
+
+# subdomains:
+RewriteCond %{HTTP_HOST} ^(.*)\.wolfography\.at
+RewriteCond %{HTTP_HOST} !^www\.wolfography\.at
+RewriteRule ^(.*)$ http://wolfography.at/apps/%1 [L,NC,QSA]
+
+</IfModule>

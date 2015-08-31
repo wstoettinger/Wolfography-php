@@ -8,12 +8,13 @@ FOR /D /R %%a IN (src\img\*) DO (
   echo !out!
 
   nconvert -out jpeg -o !out!\%%.jpg  -ratio  -rtype lanczos -q 80 -overwrite !in!\*.jpg
-  nconvert -out jpeg -o !out!\%%-2048px.jpg  -ratio  -rtype lanczos -resize 2048 2048 -q 80 -overwrite !in!\*.jpg
-  nconvert -out jpeg -o !out!\%%-1024px.jpg  -ratio  -rtype lanczos -resize 1024 1024 -q 80 -overwrite !in!\*.jpg
+  nconvert -out jpeg -o !out!\%%-2048px.jpg   -ratio  -rtype lanczos -resize 2048 2048 -q 80 -overwrite !in!\*.jpg
+  nconvert -out jpeg -o !out!\%%-1024px.jpg   -ratio  -rtype lanczos -resize 1024 1024 -q 80 -overwrite !in!\*.jpg
   
-  nconvert -out webp -o !out!\%%.webp  -ratio  -rtype lanczos -q 80 -overwrite !in!\*.jpg
   nconvert -out webp -o !out!\%%-2048px.webp  -ratio  -rtype lanczos -resize 2048 2048 -q 80 -overwrite !in!\*.jpg 
   nconvert -out webp -o !out!\%%-1024px.webp  -ratio  -rtype lanczos -resize 1024 1024 -q 80 -overwrite !in!\*.jpg  
+  nconvert -out webp -o !out!\%%-800px.webp   -ratio  -rtype lanczos -resize 800 800   -q 80 -overwrite !in!\*.jpg  
+  nconvert -out webp -o !out!\%%-640px.webp   -ratio  -rtype lanczos -resize 640 640   -q 80 -overwrite !in!\*.jpg  
 )
 SETLOCAL DISABLEDELAYEDEXPANSION
 

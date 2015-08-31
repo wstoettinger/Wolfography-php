@@ -1,6 +1,8 @@
 
 <?php if(!defined('IN_PAGE')) die('Hacking attempt');
 
+global $page;
+
 ob_start();
 
 ?>
@@ -12,7 +14,7 @@ ob_start();
   <title><?php echo $page->title ?></title>
 
   <!-- Facebook open Graph Information -->
-  <meta property="og:url" content="<?php echo $page->url; ?>" />
+  <meta property="og:url" content="<?php echo $page->url ?>" />
   <meta property="og:title" content="<?php echo $page->title ?>">
   <meta property="og:image" content="<?php echo $page->ogImageUrl ?>">
   <meta property="og:description" content="<?php echo $page->ogDescription ?>" />
@@ -22,11 +24,15 @@ ob_start();
   <meta property="fb:app_id" content="1456988281275645" /> 
   <meta property="fb:admins" content="1363196455" />
 
+  <script src="<?php echo $page->url_for('lib/lazysizes.min.js') ?>" async=""></script>
+
+  <link rel="icon" type="image/png" href="<?php echo $page->url_for('img/logo/wolfography_blende_icon-23px.png') ?>" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
-  <link rel="stylesheet" href="/css/slick-theme.css"/>
+  <?php /* <link rel="stylesheet" href="/css/slick-theme.css"/> */ ?>
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
   <?php if (isset($page->injectHead)) echo $page->injectHead; ?>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="<?php echo $page->url_for('css/style.css') ?>">
+
 </head>
 <body>
   <?php // Google Analytics ?>
@@ -40,6 +46,7 @@ ob_start();
     ga('send', 'pageview');
 
   </script>
+  <?php /*
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -59,9 +66,9 @@ ob_start();
   <script>
     window.fbAsyncInit = function() {
       FB.init({
-        appId      : '1456988281275645',
-        xfbml      : true,
-        version    : 'v2.4'
+        appId: '1456988281275645',
+        xfbml: true,
+        version: 'v2.4'
       });
     };
 
@@ -71,38 +78,33 @@ ob_start();
      js = d.createElement(s); js.id = id;
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-  </script>
+   }(document, 'script', 'facebook-jssdk')); 
+  </script>  */ ?>
   <header>
     <div class="nav-bar">
       <nav class="mynav container">
        <div class="logo left"> 
-         <a href="/"><img src="http://www.wolfography.at/application/files/cache/798bcd907015479bd4ea81b3314c94b2.png" alt="Wolfography Logo" width="300" height="60" title="Wolfography"></a>
+         <a href="/"><img src="/img/logo/wolfography_logo_white-300px.png" alt="Wolfography Logo" width="300" height="60" title="Wolfography"></a>
          <span class="menu-toggle right"><a href="#"></a></span>
        </div>
        <div class="menu right">
          <ul>
           <li class="active"><a href="/"> Home</a></li>
           <li class="has-dropdown">
-            <a href="/fotos"> Fotos</a>
+            <a href="<?php echo $page->url_for('fotos') ?>"> Fotos</a>
             <a href="#" class="dropdown-toggle"> Fotos</a>
             <ul class="dropdown">
-              <li><a href="/fotos" class="parent-link"> Alle Fotos</a></li>
-              <li><a href="/fotos/architektur"> Architektur</a></li>
-              <li><a href="/fotos/produkte"> Produkte</a></li>
-              <li><a href="/fotos/events"> Events</a></li>
-              <li><a href="/fotos/portraits"> Portraits</a></li>
+              <li><a href="<?php echo $page->url_for('fotos') ?>" class="parent-link"> Alle Fotos</a></li>
+              <li><a href="<?php echo $page->url_for('fotos/architektur') ?>"> Architektur</a></li>
+              <li><a href="<?php echo $page->url_for('fotos/produkte') ?>"> Produkte</a></li>
+              <li><a href="<?php echo $page->url_for('fotos/events') ?>"> Events</a></li>
+              <li><a href="<?php echo $page->url_for('fotos/portraits') ?>"> Portraits</a></li>
             </ul>
           </li>
-          <li><a href="/workshops"> Workshops</a></li>
+          <li><a href="<?php echo $page->url_for('workshops') ?>"> Workshops</a></li>
           <li><a href="/aktionstermine"> Aktionstermine</a></li>
-          <li class="has-dropdown"><a href="/referenzen"> Referenzen</a>
-           <a href="#" class="dropdown-toggle"> Referenzen</a>
-           <ul class="dropdown">
-             <li><a href="/referenzen/kundenmeinungen"> Kundenmeinungen</a></li>
-           </ul></li>
-           <li><a href="/preise"> Preise</a>  </li>
-           <li><a href="/kontakt"> Kontakt</a>  </li>   
+          <li><a href="/referenzen"> Referenzen</a></li>
+          <li><a href="<?php echo $page->url_for('kontakt') ?>"> Kontakt</a></li>   
          </ul>
        </div>
      </nav>
@@ -117,18 +119,22 @@ ob_start();
   </div>
 </main>
 <footer>
-  <div class="top">
-   <div class="container">Footer 1</div>
- </div>
  <div class="bottom">
-   <div class="container">Footer 2</div>
- </div>
+   <div class="container">
+     <div class="col-xs-6">
+      <small>Copyright © 2015 <b>Wolfgang Stöttinger</b></small>
+    </div>
+    <div class="col-xs-6">
+      <span class="right"><a href="<?php echo $page->url_for('impressum') ?>">Impressum</a> | <a href="<?php echo $page->url_for('kontakt') ?>">Kontakt</a> | <a href="<?php echo $page->url_for('agb') ?>">AGB &amp; Datenschutz</a></span>
+    </div>
+  </div>
+</div>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 <script src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
-<script src="/lib/holder.min.js"></script>
-<script src="/js/main.js"></script>
+<script src="<?php echo $page->url_for('lib/holder.min.js') ?>"></script>
+<script src="<?php echo $page->url_for('js/main.js') ?>"></script>
 <?php if (isset($page->injectScripts)) echo $page->injectScripts; ?>
 </body>
 </html>
