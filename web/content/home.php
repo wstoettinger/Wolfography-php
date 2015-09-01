@@ -8,7 +8,7 @@ ob_start();
   <div class="hidden-xs-down col-sm-12">
     <div class="card">
       <div class="home-slider">
-        <div><img class="lazyload card-img" data-sizes="auto" src="/img/home/DSC_4682-1024px.jpg" data-srcset="<?php echo $page->srcset('img/home/DSC_4682.jpg', '.jpg') ?>"/></div>
+        <div><img class="lazyload card-img" data-sizes="auto" data-src="/img/home/DSC_4682-1024px.jpg" data-srcset="<?php echo $page->srcset('img/home/DSC_4682.jpg', '.jpg') ?>"/></div>
         <div><img class="lazyload card-img" data-sizes="auto" data-src="/img/home/DSC_5959-1024px.jpg" data-srcset="<?php echo $page->srcset('img/home/DSC_5959.jpg', '.jpg') ?>"/></div>
         <div><img class="lazyload card-img" data-sizes="auto" data-src="/img/home/DSC_6712-1024px.jpg" data-srcset="<?php echo $page->srcset('img/home/DSC_6712.jpg', '.jpg') ?>"/></div>
       </div>

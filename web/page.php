@@ -41,7 +41,7 @@ class Page {
     return str_replace("$fileEnding", "-2048px.webp", $path) . " 2048w, " . 
       str_replace("$fileEnding", "-1024px.webp", $path) . " 1024w, " .
       str_replace("$fileEnding", "-800px.webp", $path) . " 800w, " . 
-      str_replace("$fileEnding", "-640px.webp", $path) . " 640w, ";
+      str_replace("$fileEnding", "-640px.webp", $path) . " 640w";
   }
 }
 

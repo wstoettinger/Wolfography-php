@@ -24,8 +24,6 @@ ob_start();
   <meta property="fb:app_id" content="1456988281275645" /> 
   <meta property="fb:admins" content="1363196455" />
 
-  <script src="<?php echo $page->url_for('lib/lazysizes.min.js') ?>" async=""></script>
-
   <link rel="icon" type="image/png" href="<?php echo $page->url_for('img/logo/wolfography_blende_icon-23px.png') ?>" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
   <?php /* <link rel="stylesheet" href="/css/slick-theme.css"/> */ ?>
@@ -91,20 +89,20 @@ ob_start();
          <ul>
           <li class="active"><a href="/"> Home</a></li>
           <li class="has-dropdown">
-            <a href="<?php echo $page->url_for('fotos') ?>"> Fotos</a>
+            <a href="/fotos"> Fotos</a>
             <a href="#" class="dropdown-toggle"> Fotos</a>
             <ul class="dropdown">
-              <li><a href="<?php echo $page->url_for('fotos') ?>" class="parent-link"> Alle Fotos</a></li>
-              <li><a href="<?php echo $page->url_for('fotos/architektur') ?>"> Architektur</a></li>
-              <li><a href="<?php echo $page->url_for('fotos/produkte') ?>"> Produkte</a></li>
-              <li><a href="<?php echo $page->url_for('fotos/events') ?>"> Events</a></li>
-              <li><a href="<?php echo $page->url_for('fotos/portraits') ?>"> Portraits</a></li>
+              <li><a href="/fotos" class="parent-link"> Alle Fotos</a></li>
+              <li><a href="/fotos/architektur"> Architektur</a></li>
+              <li><a href="/fotos/produkte"> Produkte</a></li>
+              <li><a href="/fotos/events"> Events</a></li>
+              <li><a href="/fotos/portraits"> Portraits</a></li>
             </ul>
           </li>
-          <li><a href="<?php echo $page->url_for('workshops') ?>"> Workshops</a></li>
+          <li><a href="/workshops"> Workshops</a></li>
           <li><a href="/aktionstermine"> Aktionstermine</a></li>
           <li><a href="/referenzen"> Referenzen</a></li>
-          <li><a href="<?php echo $page->url_for('kontakt') ?>"> Kontakt</a></li>   
+          <li><a href="/kontakt"> Kontakt</a></li>   
          </ul>
        </div>
      </nav>
@@ -125,16 +123,17 @@ ob_start();
       <small>Copyright © 2015 <b>Wolfgang Stöttinger</b></small>
     </div>
     <div class="col-xs-6">
-      <span class="right"><a href="<?php echo $page->url_for('impressum') ?>">Impressum</a> | <a href="<?php echo $page->url_for('kontakt') ?>">Kontakt</a> | <a href="<?php echo $page->url_for('agb') ?>">AGB &amp; Datenschutz</a></span>
+      <span class="right"><a href="/impressum">Impressum</a> | <a href="/kontakt">Kontakt</a> | <a href="/agb">AGB &amp; Datenschutz</a></span>
     </div>
   </div>
 </div>
 </footer>
+<script src="/js/lazysizes.min.js" async=""></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 <script src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
-<script src="<?php echo $page->url_for('lib/holder.min.js') ?>"></script>
-<script src="<?php echo $page->url_for('js/main.js') ?>"></script>
+<script src="/lib/holder.min.js"></script>
+<script src="/js/main.js"></script>
 <?php if (isset($page->injectScripts)) echo $page->injectScripts; ?>
 </body>
 </html>
