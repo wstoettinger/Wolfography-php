@@ -43,6 +43,17 @@ class Page {
       str_replace("$fileEnding", "-800px.webp", $path) . " 800w, " . 
       str_replace("$fileEnding", "-640px.webp", $path) . " 640w";
   }
-}
+
+  public function sizes() {
+
+     switch ($type) {
+      case 'slider':
+      ;
+      default: 
+        //return "(min-width: 75rem) 70.25rem, (min-width: 62rem) 58rem, (min-width: 48rem) 44rem, (min-width: 34rem) 32rem, 94vw";
+        return "(min-width: 1200px) 1124px, (min-width: 992px) 928px, (min-width: 768px) 704px, (min-width: 544px) 512px, 94vw" ;
+    }
+  }
+} 
 
 ?>
