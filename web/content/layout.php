@@ -24,12 +24,12 @@ ob_start();
   <meta property="fb:app_id" content="1456988281275645" /> 
   <meta property="fb:admins" content="1363196455" />
 
-  <link rel="icon" type="image/png" href="<?php echo $page->url_for('img/logo/wolfography_blende_icon-23px.png') ?>" />
+  <link rel="icon" type="image/png" href="/img/logo/wolfography_blende_icon-23px.png" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
   <?php /* <link rel="stylesheet" href="/css/slick-theme.css"/> */ ?>
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
   <?php if (isset($page->injectHead)) echo $page->injectHead; ?>
-  <link rel="stylesheet" href="<?php echo $page->url_for('css/style.css') ?>">
+  <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <body>
@@ -99,8 +99,8 @@ ob_start();
               <li><a href="/fotos/portraits"> Portraits</a></li>
             </ul>
           </li>
-          <li><a href="/workshops"> Workshops</a></li>
           <li><a href="/aktionstermine"> Aktionstermine</a></li>
+          <li><a href="/workshops"> Workshops</a></li>
           <li><a href="/referenzen"> Referenzen</a></li>
           <li><a href="/kontakt"> Kontakt</a></li>   
          </ul>
@@ -132,7 +132,6 @@ ob_start();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 <script src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>
-<script src="/lib/holder.min.js"></script>
 <script src="/js/main.js"></script>
 <?php if (isset($page->injectScripts)) echo $page->injectScripts; ?>
 </body>
