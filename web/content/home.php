@@ -1,4 +1,5 @@
 <?php if(!defined('IN_INDEX')) die('Hacking attempt');
+define('IN_PAGE', true);
 
 global $page;
 
@@ -7,10 +8,10 @@ ob_start();
 <div class="row">
   <div class="col-xs-12">
     <div class="card">
-      <div class="home-slider">
+      <div class="slider home-slider">
         <div><?php echo $page->build_picture('img/slider/DSC_4682.jpg','.jpg', 'slider', 'card-img'); ?></div>
-        <div><?php echo $page->build_picture('img/slider/DSC_9713.jpg','.jpg', 'slider', 'card-img'); ?></div>
-        <div><?php echo $page->build_picture('img/slider/DSC_6712.jpg','.jpg', 'slider', 'card-img'); ?></div>
+        <div class="hidden"><?php echo $page->build_picture('img/slider/DSC_9713.jpg','.jpg', 'slider', 'card-img'); ?></div>
+        <div class="hidden"><?php echo $page->build_picture('img/slider/DSC_6712.jpg','.jpg', 'slider', 'card-img'); ?></div>
       </div>      
     </div>
   </div>
@@ -24,7 +25,6 @@ ob_start();
 <?php
 $page->content = ob_get_clean();
 
-define('IN_PAGE', true);
 include ('content/layout.php');
 
 ?>

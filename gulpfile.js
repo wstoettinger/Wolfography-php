@@ -13,7 +13,7 @@ var DIST = './web/';
 var DIST_UP = './web-up/';
 
 // process css ans sass files
-gulp.task('css', function () {
+gulp.task('css', ['clean-up'], function () {
   return gulp.src([
       SRC + '**/*.css',
       SRC + '**/*.scss'
@@ -28,7 +28,7 @@ gulp.task('css', function () {
 });
 
 // process js files
-gulp.task('js', function () {
+gulp.task('js', ['clean-up'], function () {
   return gulp.src(SRC + '**/*.js')
     .pipe(changed(DIST))
     //.pipe(uglify())
@@ -37,7 +37,7 @@ gulp.task('js', function () {
 });
 
 // copy html, python and Google Apps Engine (GAE) files
-gulp.task('copy_src', function () {
+gulp.task('copy_src', ['clean-up'], function () {
   return gulp.src([
       SRC + '**/*.html',
       SRC + '**/*.php',
@@ -51,7 +51,7 @@ gulp.task('copy_src', function () {
 });
 
 // copy lib files
-gulp.task('lib', function () {
+gulp.task('lib', ['clean-up'], function () {
   return gulp.src([
       './lib/**/*',
     ])
@@ -64,7 +64,7 @@ gulp.task('clean-up', function (callback) {
   callback();
 });
 
-gulp.task('up', ['src'], function () {
+function sftpUpload() {
   return gulp.src('./web-up/**/*')
     .pipe(sftp({
       host: 'ssh.wolfography.at',
@@ -72,6 +72,15 @@ gulp.task('up', ['src'], function () {
       pass: 'ocFqFIxU',
       remotePath: '/customers/d/e/3/wolfography.at/httpd.www/',
     }));
+}
+
+gulp.task('upload', function () {
+  return sftpUpload();
+});
+
+gulp.task('up', ['clean-up', 'src'], function (callback) {
+  sftpUpload();
+  callback();
 });
 
 gulp.task('src', ['clean-up', 'css', 'js', 'copy_src']);

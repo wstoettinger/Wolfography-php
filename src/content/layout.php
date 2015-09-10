@@ -3,6 +3,8 @@
 
 global $page;
 
+$path = explode("/", $page->pageFilePath);
+
 ob_start();
 
 ?>
@@ -24,10 +26,12 @@ ob_start();
   <meta property="fb:app_id" content="1456988281275645" /> 
   <meta property="fb:admins" content="1363196455" />
 
+  <script src="/js/lazysizes.min.js" async=""></script>
+
   <link rel="icon" type="image/png" href="/img/logo/wolfography_blende_icon-23px.png" />
   <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.css"/>
-  <?php /* <link rel="stylesheet" href="/css/slick-theme.css"/> */ ?>
   <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <?php if (isset($page->injectHead)) echo $page->injectHead; ?>
   <link rel="stylesheet" href="/css/style.css">
 
@@ -44,7 +48,8 @@ ob_start();
     ga('send', 'pageview');
 
   </script>
-  <?php /*
+  <?php 
+  /*
   <!-- Facebook Pixel Code -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -77,45 +82,55 @@ ob_start();
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk')); 
-  </script>  */ ?>
-  <header>
-    <div class="nav-bar">
-      <nav class="mynav container">
-       <div class="logo left"> 
-         <a href="/"><img src="/img/logo/wolfography_logo_white-300px.png" alt="Wolfography Logo" width="300" height="60" title="Wolfography"></a>
-         <span class="menu-toggle right"><a href="#"></a></span>
-       </div>
-       <div class="menu right">
-         <ul>
-          <li class="active"><a href="/"> Home</a></li>
-          <li class="has-dropdown">
-            <a href="/fotos"> Fotos</a>
-            <a href="#" class="dropdown-toggle"> Fotos</a>
-            <ul class="dropdown">
-              <li><a href="/fotos" class="parent-link"> Alle Fotos</a></li>
-              <li><a href="/fotos/architektur"> Architektur</a></li>
-              <li><a href="/fotos/produkte"> Produkte</a></li>
-              <li><a href="/fotos/events"> Events</a></li>
-              <li><a href="/fotos/portraits"> Portraits</a></li>
-            </ul>
-          </li>
-          <li><a href="/aktionstermine"> Aktionstermine</a></li>
-          <li><a href="/workshops"> Workshops</a></li>
-          <li><a href="/referenzen"> Referenzen</a></li>
-          <li><a href="/kontakt"> Kontakt</a></li>   
-         </ul>
-       </div>
-     </nav>
-   </div>
- </header>
- <main>
-  <div class="container">
-    <?php 
-    if (isset($page->content)) 
-      echo $page->content;
-    ?>
+</script>  */ 
+?>
+<header>
+  <div class="nav-bar">
+    <nav class="mynav container">
+     <div class="logo left"> 
+       <a href="/"><img src="/img/logo/wolfography_logo_white-300px.png" alt="Wolfography Logo" width="300" height="60" title="Wolfography"></a>
+       <span class="menu-toggle right"><a href="#"></a></span>
+     </div>
+     <div class="menu right">
+       <ul>
+        <li class="<?php echo (count($path) == 0 || $path[0] == 'home' ? 'active' : ''); ?>"><a href="/"> Home</a></li>
+        <li class="has-dropdown <?php echo ($path[0] == 'fotos' ? 'active' : ''); ?>" >
+          <a href="/fotos"> Fotos</a>
+          <a href="#" class="dropdown-toggle"> Fotos</a>
+          <ul class="dropdown">
+            <li class="parent-link <?php echo $path[0] == 'fotos' ? "active" : ""; ?>"><a href="/fotos"> Alle Fotos</a></li>
+            <li class="<?php echo $path[0] == 'fotos' && $path[1] == 'architektur' ? "active" : ""; ?>"><a href="/fotos/architektur"> Architektur</a></li>
+            <li class="<?php echo $path[0] == 'fotos' && $path[1] == 'produkte' ? "active" : ""; ?>"><a href="/fotos/produkte"> Produkte</a></li>
+            <li class="<?php echo $path[0] == 'fotos' && $path[1] == 'portraits' ? "active" : ""; ?>"><a href="/fotos/portraits"> Portraits</a></li>
+          </ul>
+        </li>
+        <li class="<?php echo ($path[0] == 'aktionstermine' ? 'active' : ''); ?>"><a href="/aktionstermine"> Aktionstermine</a></li>
+        <li class="<?php echo ($path[0] == 'workshops' ? 'active' : ''); ?>"><a href="/workshops"> Workshops</a></li>
+        <li class="<?php echo ($path[0] == 'about' ? 'active' : ''); ?>"><a href="/about"> Über Mich</a></li>
+        <?php /*<li class="<?php echo ($path[0] == 'referenzen' ? 'active' : ''); ?>"><a href="/referenzen"> Referenzen</a></li> */ ?>
+        <li class="<?php echo ($path[0] == 'kontakt' ? 'active' : ''); ?>"><a href="/kontakt"> Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<?php 
+if (isset($page->pageTitle) && strlen($page->pageTitle) > 0) {
+  ?>
+  <div class="title">
+    <div class="container">
+      <h1><?php echo $page->pageTitle; ?></h1>
+    </div>
   </div>
-</main>
+  <?php
+}
+?>
+</header>
+<div class="main container">
+  <?php 
+  if (isset($page->content)) 
+    echo $page->content;
+  ?>
+</div>
 <footer>
  <div class="bottom">
    <div class="container">
@@ -128,7 +143,12 @@ ob_start();
   </div>
 </div>
 </footer>
-<script src="/js/lazysizes.min.js" async=""></script>
+<div class="modal fade" id="slideshowModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    <span class="sr-only">Close</span>
+  </button>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"></script>
 <script src="//cdn.jsdelivr.net/jquery.slick/1.5.8/slick.min.js"></script>

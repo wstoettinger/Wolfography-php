@@ -6,24 +6,86 @@ window.initialize = function () {
   window.initMenu();
 
   $(document).ready(function () {
+
     $('.home-slider').slick({
       arrows: false,
       infinite: true,
       autoplay: true,
-      autoplaySpeed: 3000,
+      autoplaySpeed: 2000,
       speed: 1000,
       fade: true,
       cssEase: 'linear',
       lazyLoad: 'progressive',
-      //focusOnSelect: true (for clicks)
-      //lazyLoad  'ondemand' or 'progressive'
-      //mobileFirst: true
-      //swipe: true
-      //swipeToSlide: 
     });
-  });
 
+    var big = {
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: true,
+      fade: true,
+      asNavFor: '.slider-eins-small'
+    };
+
+    var small = {
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      draggable: false,
+      arrows: true,
+      focusOnSelect: true,
+      infinite: true,
+      centerMode: true,
+      asNavFor: '.slider-eins-big'
+    };
+
+    $('.slider-eins-big').slick(big);
+    $('.slider-eins-small').slick(small);
+
+    big.asNavFor = '.slider-zwei-small';
+    small.asNavFor = '.slider-zwei-big';
+
+    $('.slider-zwei-big').slick(big);
+    $('.slider-zwei-small').slick(small);
+
+    // immitate opening a modal dialog on a slide click.
+    $('.slick-slide').click(function () {
+      var cont = $(this).closest('.slider-container');
+      // apply css for z-index and stuff
+      cont.addClass('modal-shown');
+      // scroll to position
+      $('html, body').animate({
+        scrollTop: cont.offset().top - 20
+      }, 500);
+      // show the backdrop
+      $('#slideshowModal').modal('show');
+    });
+
+    // hide modal when escape pressed inside shlick slide
+    $('.slick-slide').keyup(function (event) {
+      if (event.which == 27) {
+        $('#slideshowModal').modal('hide');
+      }
+    });
+
+    // hide modal on mouse wheel:
+    $('.slick-slide').bind('mousewheel', hideModal);
+    $('#slideshowModal').bind('mousewheel', hideModal);
+
+    // hide modal on touch move:
+    $('.slick-slide').bind('touchmove', hideModal);
+    $('#slideshowModal').bind('touchmove', hideModal);
+
+    // remove class after modal is hidden
+    $('#slideshowModal').on('hidden.bs.modal', function (event) {
+      $('.slider-container').removeClass('modal-shown');
+    });
+
+    $('.slider div').removeClass("hidden");
+  });
 };
+
+window.hideModal = function (e) {
+  $('#slideshowModal').modal('hide');
+}
 
 window.loadScript = function () {
   var sheet = document.createElement('link');
