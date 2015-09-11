@@ -46,69 +46,65 @@ class Page {
   }
 
   public function build_picture($path, $fileEnding, $type, $class) {    
+    $tempPath = str_replace($fileEnding, "", $path);
     switch ($type) {
       case 'card': {
         return "<picture>" .
-/*        "<source media=\"(min-width: 75rem)\" srcset=\"" . str_replace($fileEnding, "-360w$fileEnding", $path) . " 1x, " . str_replace($fileEnding, "-720w$fileEnding", $path) . " 2x\" />" .
-        "<source media=\"(min-width: 62rem)\" srcset=\"" . str_replace($fileEnding, "-360w$fileEnding", $path) . " 1x, " . str_replace($fileEnding, "-720w$fileEnding", $path) . " 2x\" />" .
-        "<source media=\"(min-width: 48rem)\" srcset=\"" . str_replace($fileEnding, "-360w$fileEnding", $path) . " 1x, " . str_replace($fileEnding, "-720w$fileEnding", $path) . " 2x\" />" .
-        "<source media=\"(min-width: 34rem)\" srcset=\"" . str_replace($fileEnding, "-240w$fileEnding", $path) . " 1x, " . str_replace($fileEnding, "-480w$fileEnding", $path) . " 2x, " . str_replace($fileEnding, "-720w$fileEnding", $path) . " 3x\" />" .
-        "<source srcset=\"" . str_replace($fileEnding, "-512w$fileEnding", $path) . " 1x, " . str_replace($fileEnding, "-1024w$fileEnding", $path) . " 2x, " . str_replace($fileEnding, "-1536w$fileEnding", $path) . " 3x\" />" . */
         "<img class=\"lazyload $class\" sizes=\"(min-width: 75rem) 360px, (min-width: 62rem) 360px, (min-width: 48rem) 360px, (min-width: 34rem) 240px, 100vw\" src=\"" . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . "\" data-srcset=\"" . 
-        str_replace($fileEnding, "-240w$fileEnding", $path) . " 240w, " . 
-        str_replace($fileEnding, "-360w$fileEnding", $path) . " 360w, " .
-        str_replace($fileEnding, "-480w$fileEnding", $path) . " 480w, " . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . " 512w, " . 
-        str_replace($fileEnding, "-720w$fileEnding", $path) . " 720w, " . 
-        str_replace($fileEnding, "-1024w$fileEnding", $path) . " 1024w, " . 
-        str_replace($fileEnding, "-1536w$fileEnding", $path) . " 1536w" . "\" />" .
+        $tempPath . "-512w" . $fileEnding . "\" data-srcset=\"" . 
+        $tempPath . "-240w" . $fileEnding . " 240w, " . 
+        $tempPath . "-360w" . $fileEnding . " 360w, " .
+        $tempPath . "-480w" . $fileEnding . " 480w, " . 
+        $tempPath . "-512w" . $fileEnding . " 512w, " . 
+        $tempPath . "-720w" . $fileEnding . " 720w, " . 
+        $tempPath . "-1024w" . $fileEnding . " 1024w, " . 
+        $tempPath . "-1536w" . $fileEnding . " 1536w" . "\" />" .
         "</picture>";
       }
       case 'card-aktion': {
         return "<picture>" .
         "<img class=\"lazyload $class\" sizes=\"(min-width: 75rem) 360px, (min-width: 62rem) 480px, (min-width: 48rem) 360px, (min-width: 34rem) 512px, 100vw\" src=\"" . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . "\" data-srcset=\"" . 
-        str_replace($fileEnding, "-240w$fileEnding", $path) . " 240w, " . 
-        str_replace($fileEnding, "-360w$fileEnding", $path) . " 360w, " .
-        str_replace($fileEnding, "-480w$fileEnding", $path) . " 480w, " . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . " 512w, " . 
-        str_replace($fileEnding, "-720w$fileEnding", $path) . " 720w, " . 
-        str_replace($fileEnding, "-1024w$fileEnding", $path) . " 1024w, " . 
-        str_replace($fileEnding, "-1536w$fileEnding", $path) . " 1536w" . "\" />" .
+        $tempPath . "-512w" . $fileEnding . "\" data-srcset=\"" . 
+        $tempPath . "-240w" . $fileEnding . " 240w, " . 
+        $tempPath . "-360w" . $fileEnding . " 360w, " .
+        $tempPath . "-480w" . $fileEnding . " 480w, " . 
+        $tempPath . "-512w" . $fileEnding . " 512w, " . 
+        $tempPath . "-720w" . $fileEnding . " 720w, " . 
+        $tempPath . "-1024w" . $fileEnding . " 1024w, " . 
+        $tempPath . "-1536w" . $fileEnding . " 1536w" . "\" />" .
         "</picture>";
       }
       case 'slider': {
         return "<picture>" .
         "<source media=\"(min-width: 62rem)\" sizes=\"(min-width: 75rem) 70.25rem, 58rem\" data-srcset=\"" . 
-        str_replace($fileEnding, "-l-928w$fileEnding", $path) . " 928w, " . 
-        str_replace($fileEnding, "-l-1124w$fileEnding", $path) . " 1124w, " . 
-        str_replace($fileEnding, "-l-1856w$fileEnding", $path) . " 1856w, " .
-        str_replace($fileEnding, "-l-2248w$fileEnding", $path) . " 2248w" . "\" />" .
+        $tempPath . "-l-928w" . $fileEnding . " 928w, " . 
+        $tempPath . "-l-1124w" . $fileEnding . " 1124w, " . 
+        $tempPath . "-l-1856w" . $fileEnding . " 1856w, " .
+        $tempPath . "-l-2248w" . $fileEnding . " 2248w" . "\" />" .
         "<source media=\"(min-width: 34rem)\" sizes=\"(min-width: 48rem) 44rem, 32rem\" data-srcset=\"" . 
-        str_replace($fileEnding, "-m-512w$fileEnding", $path) . " 512w, " . 
-        str_replace($fileEnding, "-m-704w$fileEnding", $path) . " 704w, " . 
-        str_replace($fileEnding, "-m-1024w$fileEnding", $path) . " 1024w, " . 
-        str_replace($fileEnding, "-m-1408w$fileEnding", $path) . " 1408w, " . 
-        str_replace($fileEnding, "-m-1536w$fileEnding", $path) . " 1536w" . "\" />" .
+        $tempPath . "-m-512w" . $fileEnding . " 512w, " . 
+        $tempPath . "-m-704w" . $fileEnding . " 704w, " . 
+        $tempPath . "-m-1024w" . $fileEnding . " 1024w, " . 
+        $tempPath . "-m-1408w" . $fileEnding . " 1408w, " . 
+        $tempPath . "-m-1536w" . $fileEnding . " 1536w" . "\" />" .
         "<img class=\"lazyload $class\" sizes=\"100vw\" src=\"" . 
-        str_replace($fileEnding, "-s-512w$fileEnding", $path) . "\" data-srcset=\"" . 
-        str_replace($fileEnding, "-s-512w$fileEnding", $path) . " 512w, "  . 
-        str_replace($fileEnding, "-s-1024w$fileEnding", $path) . " 1024w, " . 
-        str_replace($fileEnding, "-s-1536w$fileEnding", $path) . " 1536w\" />" .
+        $tempPath . "-s-512w" . $fileEnding . "\" data-srcset=\"" . 
+        $tempPath . "-s-512w" . $fileEnding . " 512w, "  . 
+        $tempPath . "-s-1024w" . $fileEnding . " 1024w, " . 
+        $tempPath . "-s-1536w" . $fileEnding . " 1536w\" />" .
         "</picture>";
       }
       case 'syncslider': {
         return "<picture>" .
         "<img class=\"lazyload $class\" sizes=\"(min-width: 75rem) 70.25rem, (min-width: 62rem) 58rem, (min-width: 48rem) 44rem, (min-width: 34rem) 32rem, 100vw\" src=\"" . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . "\" data-srcset=\"" . 
-        str_replace($fileEnding, "-512w$fileEnding", $path) . " 512w, " . 
-        str_replace($fileEnding, "-704w$fileEnding", $path) . " 704w, " .
-        str_replace($fileEnding, "-928w$fileEnding", $path) . " 928w, " . 
-        str_replace($fileEnding, "-1124w$fileEnding", $path) . " 1124w, " . 
-        str_replace($fileEnding, "-1536w$fileEnding", $path) . " 1536w, " . 
-        str_replace($fileEnding, "-1856w$fileEnding", $path) . " 1856w, " . 
-        str_replace($fileEnding, "-2248w$fileEnding", $path) . " 2248w" . "\" />" .
+        $tempPath . "-512w" . $fileEnding . "\" data-srcset=\"" . 
+        $tempPath . "-512w" . $fileEnding . " 512w, " . 
+        $tempPath . "-704w" . $fileEnding . " 704w, " .
+        $tempPath . "-928w" . $fileEnding . " 928w, " . 
+        $tempPath . "-1124w" . $fileEnding . " 1124w, " . 
+        $tempPath . "-1536w" . $fileEnding . " 1536w, " . 
+        $tempPath . "-1856w" . $fileEnding . " 1856w, " . 
+        $tempPath . "-2248w" . $fileEnding . " 2248w" . "\" />" .
         "</picture>";
       }
     } 
